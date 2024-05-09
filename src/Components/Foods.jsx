@@ -1,107 +1,180 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import searching from "../../public/images/search.svg";
 
 const Foods = () => {
-  const [data, setData] = useState([]);
+  const [filteredData, setFilteredData] = useState([]);
+  const [dishes, setDishes] = useState([]);
 
-  const Product = async () => {
-    try {
-      const res = await axios.get(
-        "https://662c92670547cdcde9de970f.mockapi.io/Product"
-      );
+  const [searchTerm, setSearchTerm] = useState("");
 
-      if(res.status !== 200) throw new Error("Something went wrong!");
-      setData(res.data);
-    } catch (error) {
-      console.log(error.message);
-    }
+  const handleChange = (e) => {
+    const value = e.target.value;
+    setSearchTerm(value);
+    handleSearch(value);
   };
 
+  const options = {
+    weekday: "long",
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+  };
+  const today = new Date();
+  const formattedDate = today.toLocaleDateString("en-US", options);
+
   useEffect(() => {
-    Product();
+    axios
+      .get("https://662c92670547cdcde9de970f.mockapi.io/Product")
+      .then((response) => {
+        setDishes(response.data);
+        setFilteredData(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching data: ", error);
+      });
   }, []);
 
-  return (
-    <div className="flex flex-col gap-2">
-      <div className="fixed w-3/5 ml-28 mt-28 z-10 bg-[#252836]">
-        <div className="navbar   w-full">
-          <ul className="flex gap-[4%] mb-2">
-            <li>
-              <a
-                className="text-base font-normal font-[barlow] hover:text-[#EA7C69] hover:border-b-[4px] pr-4 pb-2 border-solid hover:border-[#EA7C69] transition-all duration-600"
-                href="#"
-              >
-                Hot dishes
-              </a>
-            </li>
-            <li>
-              <a
-                className="text-base font-normal font-[barlow] hover:text-[#EA7C69] hover:border-b-[4px] px-4 pb-2 border-solid hover:border-[#EA7C69] transition-all duration-600"
-                href="#"
-              >
-                Cold dishes
-              </a>
-            </li>
-            <li>
-              <a
-                className="text-base font-normal font-[barlow] hover:text-[#EA7C69] hover:border-b-[4px] px-4 pb-2 border-solid hover:border-[#EA7C69] transition-all duration-600"
-                href="#"
-              >
-                Soup
-              </a>
-            </li>
-            <li>
-              <a
-                className="text-base font-normal font-[barlow] hover:text-[#EA7C69] hover:border-b-[4px] px-4 pb-2 border-solid hover:border-[#EA7C69] transition-all duration-600"
-                href="#"
-              >
-                Grill
-              </a>
-            </li>
-            <li>
-              <a
-                className="text-base font-normal font-[barlow] hover:text-[#EA7C69] hover:border-b-[4px] px-4 pb-2 border-solid hover:border-[#EA7C69] transition-all duration-600"
-                href="#"
-              >
-                Appetizer
-              </a>
-            </li>
-            <li>
-              <a
-                className="text-base font-normal font-[barlow] hover:text-[#EA7C69] hover:border-b-[4px] px-4 pb-2 border-solid hover:border-[#EA7C69] transition-all duration-600"
-                href="#"
-              >
-                Dessert
-              </a>
-            </li>
-          </ul>
-          <hr className="w-full bg-[#393C49]" />
-        </div>
-        <div className="mt-4  w-full pb-3">
-          <div className="top flex justify-between w-full">
-            <h1 className="font-[barlow] font-semibold text-lg">
-              Choose dishes
-            </h1>
+  const handleSearch = (searchTerm) => {
+    const lowerCaseSearchTerm = searchTerm.toLowerCase();
+    const filtered = dishes.filter((dish) =>
+      dish.name.toLowerCase().includes(lowerCaseSearchTerm)
+    );
+    setFilteredData(filtered);
+  };
 
-            <select className="bg-[#1F1D2B]" name="" id="">
-              <option value="">Dine in</option>
-              <option value="">To go</option>
-              <option value="">Delivery</option>
-            </select>
+  return (
+    <div>
+      <div className="fixed justify-between w-3/5 ml-28 bg-[#252836] pb-20 pt-6">
+        <nav className="flex justify-between items-center">
+          <div className="flex flex-col gap-1">
+            <h1 className="text-[28px] font-[barlow] font-semibold">
+              Salimov To'lqin
+            </h1>
+            <h2 className="font-[barlow] font-normal text-base">
+              {formattedDate}
+            </h2>
+          </div>
+
+          <label
+            htmlFor="search"
+            className="flex bg-[#2D303E] rounded-lg px-5 py-3 gap-2 border border-[#393C49]"
+          >
+            <img src={searching} alt="" />
+            <input
+              className="bg-transparent outline-none"
+              type="text"
+              placeholder="Search for food, coffe, etc.."
+              id="search"
+              value={searchTerm}
+              onChange={handleChange}
+            />
+          </label>
+        </nav>
+      </div>
+      <div className="flex flex-col gap-2">
+        <div className="fixed w-3/5 ml-28 mt-28 z-10 bg-[#252836]">
+          <div className="navbar w-full mt-4 pb-3">
+            <ul className="flex gap-[4%] mb-2">
+              <li>
+                <a
+                  className="text-base font-normal font-[barlow] hover:text-[#EA7C69] hover:border-b-[4px] pr-4 pb-2 border-solid hover:border-[#EA7C69] transition-all duration-600"
+                  href="#"
+                >
+                  Hot dishes
+                </a>
+              </li>
+
+              <li>
+                <a
+                  className="text-base px-4 font-normal font-[barlow] hover:text-[#EA7C69] hover:border-b-[4px] pr-4 pb-2 border-solid hover:border-[#EA7C69] transition-all duration-600"
+                  href="#"
+                >
+                  Cold dishes
+                </a>
+              </li>
+
+              <li>
+                <a
+                  className="text-base px-4 font-normal font-[barlow] hover:text-[#EA7C69] hover:border-b-[4px] pr-4 pb-2 border-solid hover:border-[#EA7C69] transition-all duration-600"
+                  href="#"
+                >
+                  Soup
+                </a>
+              </li>
+
+              <li>
+                <a
+                  className="text-base px-4 font-normal font-[barlow] hover:text-[#EA7C69] hover:border-b-[4px] pr-4 pb-2 border-solid hover:border-[#EA7C69] transition-all duration-600"
+                  href="#"
+                >
+                  Grill
+                </a>
+              </li>
+
+              <li>
+                <a
+                  className="text-base px-4 font-normal font-[barlow] hover:text-[#EA7C69] hover:border-b-[4px] pr-4 pb-2 border-solid hover:border-[#EA7C69] transition-all duration-600"
+                  href="#"
+                >
+                  Birbalo
+                </a>
+              </li>
+
+              <li>
+                <a
+                  className="text-base px-4 font-normal font-[barlow] hover:text-[#EA7C69] hover:border-b-[4px] pr-4 pb-2 border-solid hover:border-[#EA7C69] transition-all duration-600"
+                  href="#"
+                >
+                  Dessert
+                </a>
+              </li>
+            </ul>
+            <hr className="w-full bg-[#393C49]" />
+          </div>
+
+          {/* Choose dishes */}
+          <div className="w-full mt-4 pb-3">
+            <div className="top flex justify-between w-full">
+              <h1 className="font-[barlow] font-semibold text-lg">
+                Choose dishes
+              </h1>
+              <select className="bg-[#1F1D2B]" name="" id="">
+                <option value="">Dine in</option>
+                <option value="">To go</option>
+                <option value="">Delivery</option>
+              </select>
+            </div>
           </div>
         </div>
-      </div>
-
-      <main className="ml-28 mt-56 w-full">
-        <div>
-          {data.map((product) => {
-            <div>
-              <h3>{product.name}</h3>
-              <img src={product.img} alt="" />
+        <main className="ml-28 mt-56 w-[105%]">
+          <div className="dishes">
+            <div className="dish flex flex-wrap gap-2 justify-between">
+              {filteredData.map((dish) => (
+                <div
+                  className="dish mt-12 w-[31%] text-center rounded-lg bg-[#1F1D2B] px-4 flex flex-col gap-1 pb-4"
+                  key={dish.id}
+                >
+                  <img
+                    className="w-36 h-36 mx-auto rounded-full mt-[-40px]"
+                    src={dish.img}
+                    alt=""
+                  />
+                  <h1 className="font-[barlow] font-medium text-xl">
+                    {dish.name}
+                  </h1>
+                  <h2 className="font-[barlow] font-medium text-md">
+                    $ {dish.price}
+                  </h2>
+                  <h3 className="text-[#ABBBC2] text-md font-[barlow]">
+                    {dish.available} Bowls available
+                  </h3>
+                </div>
+              ))}
             </div>
-          })}
-        </div>
-      </main>
+          </div>
+        </main>
+      </div>
     </div>
   );
 };
