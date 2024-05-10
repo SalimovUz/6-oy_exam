@@ -4,6 +4,7 @@ import Center from './Center'
 import Orders from './Orders'
 
 const Container = () => {
+  
   return (
     <div>
       <div className="container flex">
@@ -11,6 +12,7 @@ const Container = () => {
         <div className='flex gap-20'>
           <Center />
           <Orders />
+          
         </div>
       </div>
     </div>

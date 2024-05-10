@@ -44,6 +44,10 @@ const Foods = () => {
     setFilteredData(filtered);
   };
 
+  // Boshqa narsa
+
+  
+
   return (
     <div>
       <div className="fixed justify-between w-3/5 ml-28 bg-[#252836] pb-20 pt-6">
@@ -74,7 +78,7 @@ const Foods = () => {
         </nav>
       </div>
       <div className="flex flex-col gap-2">
-        <div className="fixed w-3/5 ml-28 mt-28 z-10 bg-[#252836]">
+        <div className="fixed w-3/5 ml-28 mt-28 bg-[#252836]">
           <div className="navbar w-full mt-4 pb-3">
             <ul className="flex gap-[4%] mb-2">
               <li>

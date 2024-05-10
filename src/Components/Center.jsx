@@ -1,6 +1,7 @@
 import React from 'react'
 import Header from './Header'
 import Foods from './Foods'
+import Payment from './Payment';
 
 const Center = () => {
   return (
