@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import searching from "../../public/images/search.svg";
+import "../App.css"
 
 const Foods = () => {
   const [filteredData, setFilteredData] = useState([]);
@@ -139,7 +140,7 @@ const Foods = () => {
               <h1 className="font-[barlow] font-semibold text-lg">
                 Choose dishes
               </h1>
-              <select className="bg-[#1F1D2B]" name="" id="">
+              <select className="bg-[#1F1D2B] outline-none" name="" id="">
                 <option value="">Dine in</option>
                 <option value="">To go</option>
                 <option value="">Delivery</option>
@@ -149,10 +150,10 @@ const Foods = () => {
         </div>
         <main className="ml-28 mt-56 w-[105%]">
           <div className="dishes">
-            <div className="dish flex flex-wrap gap-2 justify-between">
+            <div className="dishess flex flex-wrap gap-2 justify-between">
               {filteredData.map((dish) => (
                 <div
-                  className="dish mt-12 w-[31%] text-center rounded-lg bg-[#1F1D2B] px-4 flex flex-col gap-1 pb-4"
+                  className="dish transition-all duration-800 mt-12 w-[31%] h-[250px] text-center rounded-lg bg-[#1F1D2B] flex flex-col gap-1 pb-4"
                   key={dish.id}
                 >
                   <img
@@ -169,6 +170,9 @@ const Foods = () => {
                   <h3 className="text-[#ABBBC2] text-md font-[barlow]">
                     {dish.available} Bowls available
                   </h3>
+                  <button className="btn text-[#1F1D2B] mx-auto ">
+                    Savatga qo'shish
+                  </button>
                 </div>
               ))}
             </div>

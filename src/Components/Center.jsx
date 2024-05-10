@@ -5,7 +5,7 @@ import Foods from './Foods'
 const Center = () => {
   return (
     <div className="mx-4 w-3/5">
-      <Header />
+      {/* <Header /> */}
       <Foods />
     </div>
   );
