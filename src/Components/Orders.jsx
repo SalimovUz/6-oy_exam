@@ -5,6 +5,8 @@ import deleteImg from "../../public/images/Button.svg"
 import Payment from './Payment'
 
 const Orders = () => {
+  const [activeItem, setActiveItem] = useState(1);
+
   const close = () => {
     document.querySelector(".all__order").style.display = "none"
     document.getElementById("sum").style.display = "block"
@@ -29,13 +31,32 @@ const Orders = () => {
               </h1>
 
               <div className="buttons w-4/5 pt-6 flex  gap-2">
-                <button className=" px-3 py-1 bg-[#EA7C69] rounded-lg text-lg font-[barlow] font-normal">
+                <button
+                  className={`${
+                    activeItem === 1
+                      ? "text-white bg-[#EA7C69] rounded-[8px] font-[sans-serif] w-[66px] h-[34px] text-[14px] font-semibold flex items-center justify-center border border-[#EA7C69]"
+                      : "text-[#EA7C69] rounded-[8px] font-[sans-serif] w-[66px] h-[34px] text-[14px] font-semibold flex items-center justify-center border border-[#393C49]"
+                  }`}
+                  onClick={() => setActiveItem(1)}
+                >
                   Dine In
                 </button>
-                <button className=" px-3 py-1 bg-[#1F1D2B] border border-[#393C49] text-[#EA7C69] rounded-lg text-lg font-[barlow] font-normal">
+                <button
+                  className={`${
+                    activeItem === 2
+                      ? "text-white bg-[#EA7C69] rounded-[8px] font-[sans-serif] w-[58px] h-[34px] text-[14px] font-semibold flex items-center justify-center border border-[#EA7C69]"
+                      : "text-[#EA7C69] rounded-[8px] font-[sans-serif] w-[58px] h-[34px] text-[14px] font-semibold flex items-center justify-center border border-[#393C49]"
+                  }`}
+                  onClick={() => setActiveItem(2)}
+                >
                   To Go
                 </button>
-                <button className=" px-3 py-1 bg-[#1F1D2B] border border-[#393C49] text-[#EA7C69] rounded-lg text-lg font-[barlow] font-normal">
+                <button className={`${
+              activeItem === 3
+                ? "text-white bg-[#EA7C69] rounded-[8px] font-[sans-serif] w-[74px] h-[34px] text-[14px] font-semibold flex items-center justify-center border border-[#EA7C69]"
+                : "text-[#EA7C69] rounded-[8px] font-[sans-serif] w-[74px] h-[34px] text-[14px] font-semibold flex items-center justify-center border border-[#393C49]"
+            }`}
+            onClick={() => setActiveItem(3)}>
                   Delivery
                 </button>
               </div>
