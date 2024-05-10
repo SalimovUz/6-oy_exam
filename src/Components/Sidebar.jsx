@@ -11,7 +11,7 @@ import logout from "../../public/images/sidebar-logout.svg";
 
 const Sidebar = () => {
   return (
-    <div className='fixed'>
+    <div className="fixed">
       <div className="sidebar justify-between p-4 bg-[#1F1D2B] flex flex-col items-center h-screen w-24 rounded-r-xl gap-5">
         <NavLink to="/">
           <img
@@ -34,31 +34,41 @@ const Sidebar = () => {
             alt=""
           />
         </NavLink>
-        <img
-          className="cursor-pointer p-4 hover:bg-[#EA7C69] rounded-lg transition-all duration-500"
-          src={statistic}
-          alt=""
-        />
-        <img
-          className="cursor-pointer p-4 hover:bg-[#EA7C69] rounded-lg transition-all duration-500"
-          src={message}
-          alt=""
-        />
-        <img
-          className="cursor-pointer p-4 hover:bg-[#EA7C69] rounded-lg transition-all duration-500"
-          src={noti}
-          alt=""
-        />
-        <img
-          className="cursor-pointer p-4 hover:bg-[#EA7C69] rounded-lg transition-all duration-500"
-          src={settings}
-          alt=""
-        />
-        <img
-          className="cursor-pointer p-4 hover:bg-[#EA7C69] rounded-lg transition-all duration-500"
-          src={logout}
-          alt=""
-        />
+        <NavLink to="/stat">
+          <img
+            className="cursor-pointer p-4 hover:bg-[#EA7C69] rounded-lg transition-all duration-500"
+            src={statistic}
+            alt=""
+          />
+        </NavLink>
+        <NavLink to="/message">
+          <img
+            className="cursor-pointer p-4 hover:bg-[#EA7C69] rounded-lg transition-all duration-500"
+            src={message}
+            alt=""
+          />
+        </NavLink>
+        <NavLink to="/notify">
+          <img
+            className="cursor-pointer p-4 hover:bg-[#EA7C69] rounded-lg transition-all duration-500"
+            src={noti}
+            alt=""
+          />
+        </NavLink>
+        <NavLink to="/settings">
+          <img
+            className="cursor-pointer p-4 hover:bg-[#EA7C69] rounded-lg transition-all duration-500"
+            src={settings}
+            alt=""
+          />
+        </NavLink>
+        <NavLink to="/logout">
+          <img
+            className="cursor-pointer p-4 hover:bg-[#EA7C69] rounded-lg transition-all duration-500"
+            src={logout}
+            alt=""
+          />
+        </NavLink>
       </div>
     </div>
   );

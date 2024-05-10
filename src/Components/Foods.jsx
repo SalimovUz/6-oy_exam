@@ -4,6 +4,7 @@ import searching from "../../public/images/search.svg";
 import "../App.css"
 
 const Foods = () => {
+  const [foodNav, setFoodNav] = useState(0)
   const [filteredData, setFilteredData] = useState([]);
   const [dishes, setDishes] = useState([]);
 
@@ -92,6 +93,9 @@ const Foods = () => {
 
               <li>
                 <a
+                  onClick={() => {
+                    setFoodNav(1);
+                  }}
                   className="text-base px-4 font-normal font-[barlow] hover:text-[#EA7C69] hover:border-b-[4px] pr-4 pb-2 border-solid hover:border-[#EA7C69] transition-all duration-600"
                   href="#"
                 >
@@ -142,7 +146,7 @@ const Foods = () => {
           <div className="w-full mt-4 pb-3">
             <div className="top flex justify-between w-full">
               <h1 className="font-[barlow] font-semibold text-lg">
-                Choose dishes
+                Choose Dishes
               </h1>
               <select className="bg-[#1F1D2B] outline-none" name="" id="">
                 <option value="">Dine in</option>
@@ -152,36 +156,71 @@ const Foods = () => {
             </div>
           </div>
         </div>
-        <main className="ml-28 mt-56 w-[105%]">
-          <div className="dishes">
-            <div className="dishess flex flex-wrap gap-2 justify-between">
-              {filteredData.map((dish) => (
-                <div
-                  className="dish transition-all duration-800 mt-12 w-[31%] h-[250px] text-center rounded-lg bg-[#1F1D2B] flex flex-col gap-1 pb-4"
-                  key={dish.id}
-                >
-                  <img
-                    className="w-36 h-36 mx-auto rounded-full mt-[-40px]"
-                    src={dish.img}
-                    alt=""
-                  />
-                  <h1 className="font-[barlow] font-medium text-xl">
-                    {dish.name}
-                  </h1>
-                  <h2 className="font-[barlow] font-medium text-md">
-                    $ {dish.price}
-                  </h2>
-                  <h3 className="text-[#ABBBC2] text-md font-[barlow]">
-                    {dish.available} Bowls available
-                  </h3>
-                  <button className="btn text-[#1F1D2B] mx-auto ">
-                    Savatga qo'shish
-                  </button>
-                </div>
-              ))}
+        {foodNav === 0 && (
+          <main className="ml-28 mt-56 w-[105%]">
+            <div className="dishes">
+              <div className="dishess flex flex-wrap gap-2 justify-between">
+                {filteredData.map((dish) => (
+                  <div
+                    className="dish transition-all duration-800 mt-12 w-[31%] h-[250px] text-center rounded-lg bg-[#1F1D2B] flex flex-col gap-1 pb-4 hover:cursor-pointer hover:[box-shadow:rgba(0,_0,_0,_0.07)_0px_4px_6px,_rgba(0,_0,_0,_0.07)_0px_6px_8px,_rgba(0,_0,_0,_0.07)_0px_4px_8px,_rgba(0,_0,_0,_0.07)_0px_8px_16px,_rgba(0,_0,_0,_0.07)_0px_16px_32px,_rgba(0,_0,_0,_0.07)_0px_32px_64px] hover:transition-[1s]"
+                    key={dish.id}
+                  >
+                    <img
+                      className="w-36 h-36 mx-auto rounded-full mt-[-40px]"
+                      src={dish.img}
+                      alt=""
+                    />
+                    <h1 className="font-[barlow] font-medium text-xl">
+                      {dish.name}
+                    </h1>
+                    <h2 className="font-[barlow] font-medium text-md">
+                      $ {dish.price}
+                    </h2>
+                    <h3 className="text-[#ABBBC2] text-md font-[barlow]">
+                      {dish.available} Bowls available
+                    </h3>
+                    <button className="btn text-[#1F1D2B] mx-auto ">
+                      Savatga qo'shish
+                    </button>
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
-        </main>
+          </main>
+        )}
+
+        {foodNav === 1 && (
+          <main className="ml-28 mt-56 w-[105%]">
+            <div className="dishes">
+              <div className="dishess flex flex-wrap gap-2 justify-between">
+                {filteredData.map((dish) => (
+                  <div
+                    className="dish transition-all duration-800 mt-12 w-[31%] h-[250px] text-center rounded-lg bg-[#1F1D2B] flex flex-col gap-1 pb-4 hover:cursor-pointer hover:[box-shadow:rgba(0,_0,_0,_0.07)_0px_4px_6px,_rgba(0,_0,_0,_0.07)_0px_6px_8px,_rgba(0,_0,_0,_0.07)_0px_4px_8px,_rgba(0,_0,_0,_0.07)_0px_8px_16px,_rgba(0,_0,_0,_0.07)_0px_16px_32px,_rgba(0,_0,_0,_0.07)_0px_32px_64px] hover:transition-[1s]"
+                    key={dish.id}
+                  >
+                    <img
+                      className="w-36 h-36 mx-auto rounded-full mt-[-40px]"
+                      src={dish.img}
+                      alt=""
+                    />
+                    <h1 className="font-[barlow] font-medium text-xl">
+                      {dish.name}
+                    </h1>
+                    <h2 className="font-[barlow] font-medium text-md">
+                      $ {dish.price}
+                    </h2>
+                    <h3 className="text-[#ABBBC2] text-md font-[barlow]">
+                      {dish.available} Bowls available
+                    </h3>
+                    <button className="btn text-[#1F1D2B] mx-auto ">
+                      Savatga qo'shish
+                    </button>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </main>
+        )}
       </div>
     </div>
   );

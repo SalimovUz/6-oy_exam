@@ -124,31 +124,31 @@ const Orders = () => {
               </div> */}
 
                 <div
-                id="sum"
-                className=" hidden flex-col bottom-0 w-full pb-4 gap-10 bg-[#1F1D2B]"
-              >
-                <span className="w-full bg-[#393C49] block h-[1px]"></span>
-                <button
-                  // onClick={close}
-                  className="absolute text-end flex right-4 text-xl cursor-auto"
+                  id="sum"
+                  className=" hidden flex-col bottom-0 w-full pb-4 gap-10 bg-[#1F1D2B]"
                 >
-                  x
-                </button>
-                <div className="flex flex-col gap-4">
-                  <div className="flex justify-between">
-                    <h1>Discount</h1>
-                    <h2>0$</h2>
-                  </div>
-                  <div className="flex justify-between">
-                    <h1>Sub total</h1>
-                    <h2>$ 21.03</h2>
-                  </div>
-
-                  <button className="w-full text-xl bg-[#EA7C69] h-12 rounded-lg">
-                    Continue to Payment
+                  <span className="w-full bg-[#393C49] block h-[1px]"></span>
+                  <button
+                    // onClick={close}
+                    className="absolute text-end flex right-4 text-xl cursor-auto"
+                  >
+                    x
                   </button>
+                  <div className="flex flex-col gap-4">
+                    <div className="flex justify-between">
+                      <h1>Discount</h1>
+                      <h2>0$</h2>
+                    </div>
+                    <div className="flex justify-between">
+                      <h1>Sub total</h1>
+                      <h2>$ 21.03</h2>
+                    </div>
+
+                    <button className="w-full text-xl bg-[#EA7C69] h-12 rounded-lg">
+                      Continue to Payment
+                    </button>
+                  </div>
                 </div>
-              </div>
 
                 <div className="all__order flex flex-col bottom-0 fixed w-[26%] pr-5 pb-4 gap-10 bg-[#1F1D2B]">
                   <span className="w-full bg-[#393C49] block h-[1px]"></span>
@@ -170,7 +170,7 @@ const Orders = () => {
 
                     <button
                       onClick={openModal}
-                      className="w-full text-xl bg-[#EA7C69] h-12 rounded-lg"
+                      className="w-full text-xl bg-[#EA7C69] h-12 rounded-lg [box-shadow:0px_8px_24px_0px_#EA7C694D]"
                     >
                       Continue to Payment
                     </button>
@@ -182,9 +182,8 @@ const Orders = () => {
         </div>
 
         {/* Start */}
-
       </div>
-        {modalIsOpen && <Payment closeModal={closeModal} />}
+      {modalIsOpen && <Payment closeModal={closeModal} />}
     </>
   );
 }
