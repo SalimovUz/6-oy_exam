@@ -7,10 +7,10 @@ import Payment from './Payment'
 const Orders = () => {
   const [activeItem, setActiveItem] = useState(1);
 
-  const close = () => {
-    document.querySelector(".all__order").style.display = "none"
-    document.getElementById("sum").style.display = "block"
-  }
+  // const close = () => {
+  //   document.querySelector(".all__order").style.display = "none"
+  //   document.getElementById("sum").style.display = "block"
+  // }
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const openModal = () => {
@@ -51,12 +51,14 @@ const Orders = () => {
                 >
                   To Go
                 </button>
-                <button className={`${
-              activeItem === 3
-                ? "text-white bg-[#EA7C69] rounded-[8px] font-[sans-serif] w-[74px] h-[34px] text-[14px] font-semibold flex items-center justify-center border border-[#EA7C69]"
-                : "text-[#EA7C69] rounded-[8px] font-[sans-serif] w-[74px] h-[34px] text-[14px] font-semibold flex items-center justify-center border border-[#393C49]"
-            }`}
-            onClick={() => setActiveItem(3)}>
+                <button
+                  className={`${
+                    activeItem === 3
+                      ? "text-white bg-[#EA7C69] rounded-[8px] font-[sans-serif] w-[74px] h-[34px] text-[14px] font-semibold flex items-center justify-center border border-[#EA7C69]"
+                      : "text-[#EA7C69] rounded-[8px] font-[sans-serif] w-[74px] h-[34px] text-[14px] font-semibold flex items-center justify-center border border-[#393C49]"
+                  }`}
+                  onClick={() => setActiveItem(3)}
+                >
                   Delivery
                 </button>
               </div>
@@ -165,7 +167,10 @@ const Orders = () => {
                       <h2>$ 21.03</h2>
                     </div>
 
-                    <button className="w-full text-xl bg-[#EA7C69] h-12 rounded-lg">
+                    <button
+                      onClick={openModal}
+                      className="w-full text-xl bg-[#EA7C69] h-12 rounded-lg [box-shadow:0px_8px_24px_0px_#EA7C694D]"
+                    >
                       Continue to Payment
                     </button>
                   </div>
@@ -173,10 +178,7 @@ const Orders = () => {
 
                 <div className="all__order flex flex-col bottom-0 fixed w-[26%] pr-5 pb-4 gap-10 bg-[#1F1D2B]">
                   <span className="w-full bg-[#393C49] block h-[1px]"></span>
-                  <button
-                    onClick={close}
-                    className="absolute text-end flex right-4 text-xl cursor-auto"
-                  >
+                  <button className="absolute text-end flex right-4 text-xl cursor-auto">
                     x
                   </button>
                   <div className="flex flex-col gap-4">
